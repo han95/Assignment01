@@ -1,6 +1,7 @@
 package cmput301.assignment1.tracker;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class TClaim implements Serializable {
 	/**
@@ -10,6 +11,8 @@ public class TClaim implements Serializable {
 	protected String des = "";
 	protected String start_date = "";
 	protected String end_date = "";
+	
+	protected ArrayList<EItem> eiList = new ArrayList<EItem>();
 	
 	public TClaim(String des, String start, String end){
 		this.des = des;
@@ -23,5 +26,9 @@ public class TClaim implements Serializable {
 	
 	public String get_description(){
 		return this.des;
+	}
+	
+	public ArrayList<EItem> get_eiList() {
+		return eiList;
 	}
 }

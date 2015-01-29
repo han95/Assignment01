@@ -26,6 +26,10 @@
             android:name="cmput301.assignment1.tracker.TravelClaimActivity"
             android:label="@string/title_activity_travel_claim" >
         </activity>
+        <activity
+            android:name="cmput301.assignment1.tracker.ExpenseItemActivity"
+            android:label="@string/title_activity_expense_item" >
+        </activity>
     </application>
 
 </manifest>

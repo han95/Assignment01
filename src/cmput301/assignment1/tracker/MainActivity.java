@@ -19,11 +19,14 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
+	private GlobalV gv;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		gv.setLabel(null);
 		
 		TClaimListManager.initManager(this.getApplicationContext());
 		

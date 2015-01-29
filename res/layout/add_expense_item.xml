@@ -98,4 +98,14 @@
         android:text=" Price:"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
+    <Button
+        android:id="@+id/saveEItemButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:onClick="saveEItem"
+        android:text="save expense item" />
+
 </RelativeLayout>

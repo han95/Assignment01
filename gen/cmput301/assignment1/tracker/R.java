@@ -26,25 +26,27 @@ public final class R {
     public static final class id {
         public static final int SubtitleText=0x7f080000;
         public static final int TravelClaimList=0x7f080001;
-        public static final int action_settings=0x7f080014;
-        public static final int addTClaimMenu=0x7f080015;
+        public static final int action_settings=0x7f080015;
+        public static final int addEItemMenu=0x7f080017;
+        public static final int addTClaimMenu=0x7f080016;
         public static final int categoryEdit=0x7f08000b;
         public static final int currencyUnitText=0x7f08000a;
         public static final int dateEdit=0x7f080004;
         public static final int dateText=0x7f080005;
         public static final int descriptionEdit=0x7f080003;
-        public static final int endDateEdit=0x7f080010;
-        public static final int endDateText=0x7f080011;
-        public static final int expenseItemList=0x7f080013;
-        public static final int expenseItemText=0x7f080012;
+        public static final int endDateEdit=0x7f080011;
+        public static final int endDateText=0x7f080012;
+        public static final int expenseItemList=0x7f080014;
+        public static final int expenseItemText=0x7f080013;
         public static final int itemCategoryText=0x7f080006;
         public static final int itemDescriptionText=0x7f080002;
         public static final int itemPriceText=0x7f080008;
         public static final int priceEdit=0x7f080007;
-        public static final int saveTravelClaimButton=0x7f08000c;
-        public static final int startDateEdit=0x7f08000e;
-        public static final int startDateText=0x7f08000f;
-        public static final int travelDescriptionText=0x7f08000d;
+        public static final int saveEItemButton=0x7f08000c;
+        public static final int saveTravelClaimButton=0x7f08000d;
+        public static final int startDateEdit=0x7f08000f;
+        public static final int startDateText=0x7f080010;
+        public static final int travelDescriptionText=0x7f08000e;
         public static final int unitEdit=0x7f080009;
     }
     public static final class layout {
@@ -53,13 +55,15 @@ public final class R {
         public static final int add_travel_claim=0x7f030002;
     }
     public static final class menu {
-        public static final int main=0x7f070000;
-        public static final int travel_claim=0x7f070001;
+        public static final int expense_item=0x7f070000;
+        public static final int main=0x7f070001;
+        public static final int travel_claim=0x7f070002;
     }
     public static final class string {
         public static final int action_settings=0x7f050001;
         public static final int app_name=0x7f050000;
         public static final int hello_world=0x7f050002;
+        public static final int title_activity_expense_item=0x7f050004;
         public static final int title_activity_travel_claim=0x7f050003;
     }
     public static final class style {

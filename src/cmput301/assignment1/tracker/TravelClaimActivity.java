@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -38,6 +39,12 @@ public class TravelClaimActivity extends Activity {
 		
 		Toast.makeText(this, "new claim is saved", Toast.LENGTH_SHORT).show();
 		Intent intent = new Intent(TravelClaimActivity.this, MainActivity.class);
+		startActivity(intent);
+	}
+	
+	public void addExpenseItem(MenuItem menu) {
+		Toast.makeText(this, "add expense item", Toast.LENGTH_SHORT).show();
+		Intent intent = new Intent(TravelClaimActivity.this, ExpenseItemActivity.class);
 		startActivity(intent);
 	}
 

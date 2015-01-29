@@ -2,7 +2,6 @@ package cmput301.assignment1.tracker;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class TClaimList implements Serializable {
 	
@@ -24,7 +23,7 @@ public class TClaimList implements Serializable {
 		tcList = new ArrayList<TClaim>();
 	}
 	
-	public Collection<TClaim> getTClaims(){
+	public ArrayList<TClaim> getTClaims(){
 		return tcList;
 	}
 	
