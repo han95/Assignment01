@@ -27,14 +27,25 @@ public class TClaimList implements Serializable {
 		return tcList;
 	}
 	
-	public void addTClaim(TClaim newTC){
-		tcList.add(newTC);
+	public void addTClaim(){//TClaim newTC){
+		tcList.add(new TClaim());
 		notifyListeners();
 	}
 	
 	public void removeTClaim(TClaim rTC){
 		tcList.remove(rTC);
 		notifyListeners();
+	}
+	
+	// get length of list
+	public int getSize() {
+		return tcList.size();
+	}
+	
+	// get last travel claim in list
+	public TClaim getLastTClaim() {
+		int i = getSize() - 1;
+		return tcList.get(i);
 	}
 	
 	public void notifyListeners(){

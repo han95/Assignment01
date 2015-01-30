@@ -37,8 +37,15 @@ public class TClaimListController {
 			throw new RuntimeException("Could not deseralize tcList from TClaimListManager");
 		} 
 	}
-	public void saveTClaim(TClaim tc) {
-		getTClaimList().addTClaim(tc);
+	
+	public void saveTClaim() { 
+		getTClaimList().addTClaim();
 	}
+
+	public void saveEItem(EItem ei) {
+		getTClaimList().getLastTClaim().get_eiList().add(ei);
+		
+	}
+	
 	
 }

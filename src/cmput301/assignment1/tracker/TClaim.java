@@ -14,10 +14,8 @@ public class TClaim implements Serializable {
 	
 	protected ArrayList<EItem> eiList = new ArrayList<EItem>();
 	
-	public TClaim(String des, String start, String end){
-		this.des = des;
-		this.start_date = start;
-		this.end_date = end;
+	public TClaim(){
+		
 	}
 	
 	public String toString(){
@@ -30,5 +28,11 @@ public class TClaim implements Serializable {
 	
 	public ArrayList<EItem> get_eiList() {
 		return eiList;
+	}
+	
+	public void setInfo(String des, String start, String end) {
+		this.des = des;
+		this.start_date = start;
+		this.end_date = end;
 	}
 }

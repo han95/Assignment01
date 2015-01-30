@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
+	TClaimListController tcC = new TClaimListController();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -83,6 +84,7 @@ public class MainActivity extends Activity {
 	
 	public void addTravelClaim(MenuItem menu){
 		Toast.makeText(this, "add a new travel claim", Toast.LENGTH_SHORT).show();
+		tcC.saveTClaim();
 		Intent intent = new Intent(MainActivity.this, TravelClaimActivity.class);
 		startActivity(intent);
 	}

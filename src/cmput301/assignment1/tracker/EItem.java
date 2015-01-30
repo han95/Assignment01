@@ -5,13 +5,18 @@ public class EItem {
 	private String date = "";
 	private String category = "";
 	private String price = "";
+	private String unit = "";
 	
-	public EItem(String des, String dat, String cat, String pri) {
+	public EItem(String des, String dat, String cat, String pri, String uni) {
 		this.description = des;
 		this.date = dat;
 		this.category = cat;
 		this.price = pri;
-		
+		this.unit = uni;
+	}
+	
+	public String toString() {
+		return get_description();
 	}
 	
 	public String get_description() {
@@ -30,5 +35,7 @@ public class EItem {
 		return this.price;
 	}
 	
-	
+	public String get_unit() {
+		return this.unit;
+	}
 }
