@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -88,7 +89,18 @@ public class MainActivity extends Activity {
 				return false;
 			}
 		});
-		
+
+		listView.setOnItemClickListener(new OnItemClickListener(){
+
+			@Override
+			public void onItemClick(AdapterView<?> adapterV, View v, int index,
+					long id) {
+				Intent intent = new Intent(MainActivity.this,TravelClaimActivity.class);
+				startActivity(intent);
+				
+			}
+			
+		});
 	}
 	
 /*
