@@ -90,6 +90,24 @@ public class MainActivity extends Activity {
 		});
 		
 	}
+	
+/*
+	public void onResume(Bundle savedInstanceState) {
+		super.onResume();
+		setContentView(R.layout.activity_main);
+		
+		TClaimListManager.initManager(this.getApplicationContext());
+		// find list view which contain travel claims
+		ListView listView = (ListView) findViewById(R.id.TravelClaimList);
+		// get saved travel claims
+		Collection<TClaim> tcs = TClaimListController.getTClaimList().getTClaims();
+		// change them to array list
+		final ArrayList<TClaim> list = new ArrayList<TClaim>(tcs);
+		final ArrayAdapter<TClaim> tcAdapter = new ArrayAdapter<TClaim>(this, android.R.layout.simple_list_item_1, list);
+		// set array adapter, show claims on screen
+		listView.setAdapter(tcAdapter);
+		
+	}*/
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -107,6 +125,7 @@ public class MainActivity extends Activity {
 		// transfer to another activity
 		Intent intent = new Intent(MainActivity.this, TravelClaimActivity.class);
 		startActivity(intent);
+		
 	}
 
 }

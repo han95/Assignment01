@@ -40,6 +40,22 @@ public class TravelClaimActivity extends Activity {
 		final ArrayAdapter<EItem> eiAdapter = new ArrayAdapter<EItem>(this, android.R.layout.simple_list_item_1, list);
 		listView.setAdapter(eiAdapter);
 	}
+	/*
+	protected void onResume(Bundle savedInstanceState) {
+		super.onResume();
+		setContentView(R.layout.add_travel_claim);
+		
+		TClaimListManager.initManager(this.getApplicationContext());
+		// get access to expense item list view
+		ListView listView = (ListView) findViewById(R.id.expenseItemList);
+
+		// get the expense item list and show it on screen
+		Collection<EItem> eis = TClaimListController.getTClaimList().getLastTClaim().get_eiList();
+		final ArrayList<EItem> list = new ArrayList<EItem>(eis);
+		final ArrayAdapter<EItem> eiAdapter = new ArrayAdapter<EItem>(this, android.R.layout.simple_list_item_1, list);
+		listView.setAdapter(eiAdapter);
+	}
+	*/
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -66,6 +82,7 @@ public class TravelClaimActivity extends Activity {
 		// Transfer to main activity automatically
 		Intent intent = new Intent(TravelClaimActivity.this, MainActivity.class);
 		startActivity(intent);
+		//finish();
 	}
 	
 	// This method is called when "add expense item" menu is clicked

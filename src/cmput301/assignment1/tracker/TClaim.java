@@ -11,10 +11,9 @@ import java.util.ArrayList;
 public class TClaim implements Serializable {
 	
 	/**
-	 * generated serialization ID
+	 * Serialization ID
 	 */
-	private static final long serialVersionUID = 6611768379810913336L;
-	
+	private static final long serialVersionUID = 7863671238087385791L;
 	// private variables
 	protected String des = "";
 	protected String start_date = "";

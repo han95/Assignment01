@@ -50,6 +50,7 @@ public class ExpenseItemActivity extends Activity {
 		// transfer to another activity
 		Intent intent = new Intent(ExpenseItemActivity.this, TravelClaimActivity.class);
 		startActivity(intent);
+		//finish();
 	}
 
 }

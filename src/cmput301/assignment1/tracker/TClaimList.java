@@ -11,10 +11,9 @@ import java.util.ArrayList;
 public class TClaimList implements Serializable {
 	
 	/**
-	 * generated serialization ID
+	 * Serialization ID
 	 */
 	private static final long serialVersionUID = 1266127983788933379L;
-	
 	// protected variables
 	protected ArrayList<TClaim> tcList = null;
 	protected transient ArrayList<Listener> listeners;
