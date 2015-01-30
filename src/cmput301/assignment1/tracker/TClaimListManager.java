@@ -11,7 +11,11 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.util.Base64;
-
+/*
+ * This is manager of this application
+ * It save data in file,
+ * to make sure data are saved when application stops
+ */
 public class TClaimListManager {
 	static final String prefFile = "TravelClaimList";
 	static final String tclkey = "travelClaimList";
@@ -49,7 +53,7 @@ public class TClaimListManager {
 		}
 
 	}
-	
+
 	static public TClaimList TClaimFromString(String tcListData) throws StreamCorruptedException, IOException, ClassNotFoundException {
 		ByteArrayInputStream bi = new ByteArrayInputStream(Base64.decode(tcListData, Base64.DEFAULT));
 		ObjectInputStream oi = new ObjectInputStream(bi);
