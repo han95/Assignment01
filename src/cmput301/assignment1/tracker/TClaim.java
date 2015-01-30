@@ -20,6 +20,7 @@ public class TClaim implements Serializable {
 	protected String start_date = "";
 	protected String end_date = "";
 	protected ArrayList<EItem> eiList = new ArrayList<EItem>();
+	protected String status = "Inprogress";
 	
 	// constructor
 	public TClaim(){
@@ -33,7 +34,7 @@ public class TClaim implements Serializable {
 	
 	// get information: description of travel claim
 	public String get_description(){
-		return this.des;
+		return this.des+"--status:"+this.status;
 	}
 	
 	// get information: expense items
