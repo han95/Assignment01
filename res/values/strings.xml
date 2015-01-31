@@ -6,5 +6,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_travel_claim">TravelClaimActivity</string>
     <string name="title_activity_expense_item">ExpenseItemActivity</string>
+    <string name="title_activity_view_travel_claim">ViewTravelClaimActivity</string>
 
 </resources>

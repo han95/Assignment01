@@ -27,6 +27,9 @@ public class MainActivity extends Activity {
 	// initialize travel claim controller
 	TClaimListController tcC = new TClaimListController();
 	
+	// initialize global value
+	ClaimIndex tcPosition = new ClaimIndex();
+	
 	// on create
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +98,8 @@ public class MainActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> adapterV, View v, int index,
 					long id) {
+				// update global value
+				tcPosition.set_tc(TClaimListController.getTClaimList().getTClaims().get(index));
 				Intent intent = new Intent(MainActivity.this,TravelClaimActivity.class);
 				startActivity(intent);
 				
@@ -103,23 +108,6 @@ public class MainActivity extends Activity {
 		});
 	}
 	
-/*
-	public void onResume(Bundle savedInstanceState) {
-		super.onResume();
-		setContentView(R.layout.activity_main);
-		
-		TClaimListManager.initManager(this.getApplicationContext());
-		// find list view which contain travel claims
-		ListView listView = (ListView) findViewById(R.id.TravelClaimList);
-		// get saved travel claims
-		Collection<TClaim> tcs = TClaimListController.getTClaimList().getTClaims();
-		// change them to array list
-		final ArrayList<TClaim> list = new ArrayList<TClaim>(tcs);
-		final ArrayAdapter<TClaim> tcAdapter = new ArrayAdapter<TClaim>(this, android.R.layout.simple_list_item_1, list);
-		// set array adapter, show claims on screen
-		listView.setAdapter(tcAdapter);
-		
-	}*/
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -134,6 +122,8 @@ public class MainActivity extends Activity {
 		Toast.makeText(this, "add a new travel claim", Toast.LENGTH_SHORT).show();
 		// build new claim object
 		tcC.saveTClaim();
+		//update global variable
+		tcPosition.set_tc(TClaimListController.getTClaimList().getLastTClaim());
 		// transfer to another activity
 		Intent intent = new Intent(MainActivity.this, TravelClaimActivity.class);
 		startActivity(intent);

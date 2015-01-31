@@ -11,7 +11,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:onClick="saveTC"
-        android:text="save travel claim" />
+        android:text="submit travel claim" />
 
     <EditText
         android:id="@+id/descriptionEdit"

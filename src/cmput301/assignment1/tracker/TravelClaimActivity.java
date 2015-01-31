@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -22,11 +23,34 @@ public class TravelClaimActivity extends Activity {
 	// access to travel claim controller
 	TClaimListController tcC = new TClaimListController();
 	
+	ClaimIndex tcPosition = new ClaimIndex();
+	TClaim tc = tcPosition.get_tc();
+	
 	// on create
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.add_travel_claim);
+		
+		// if tc is not empty:
+		if (tc.has_content()) {
+			
+			// show all information on screen
+			EditText des = (EditText) findViewById(R.id.descriptionEdit);
+			EditText start = (EditText) findViewById(R.id.startDateEdit);
+			EditText end = (EditText) findViewById(R.id.endDateEdit);
+			
+			des.setText(tc.get_description());
+			start.setText(tc.get_start_date());
+			end.setText(tc.get_end_date());
+			
+			// if status is submitted,do not allow editing
+			if (tc.get_status()=="Submitted") {
+				Toast.makeText(this, "this travel claim is submitted, no change is saved", Toast.LENGTH_SHORT).show();
+				Button button = (Button) findViewById(R.id.saveTravelClaimButton);
+				button.setText("return without saving");
+			}
+		}
 		
 		// initialize manager
 		TClaimListManager.initManager(this.getApplicationContext());
@@ -40,22 +64,6 @@ public class TravelClaimActivity extends Activity {
 		final ArrayAdapter<EItem> eiAdapter = new ArrayAdapter<EItem>(this, android.R.layout.simple_list_item_1, list);
 		listView.setAdapter(eiAdapter);
 	}
-	/*
-	protected void onResume(Bundle savedInstanceState) {
-		super.onResume();
-		setContentView(R.layout.add_travel_claim);
-		
-		TClaimListManager.initManager(this.getApplicationContext());
-		// get access to expense item list view
-		ListView listView = (ListView) findViewById(R.id.expenseItemList);
-
-		// get the expense item list and show it on screen
-		Collection<EItem> eis = TClaimListController.getTClaimList().getLastTClaim().get_eiList();
-		final ArrayList<EItem> list = new ArrayList<EItem>(eis);
-		final ArrayAdapter<EItem> eiAdapter = new ArrayAdapter<EItem>(this, android.R.layout.simple_list_item_1, list);
-		listView.setAdapter(eiAdapter);
-	}
-	*/
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -66,9 +74,14 @@ public class TravelClaimActivity extends Activity {
 	
 	// This function is called when "save travel claim" button is clicked
 	public void saveTC(View v){
+		if (tc.get_status()=="Submitted") {
+			Toast.makeText(this, "returning...", Toast.LENGTH_SHORT).show();
+			Intent intent = new Intent(TravelClaimActivity.this, MainActivity.class);
+			startActivity(intent);
+		}
 		// Show sentence on screen to tell user object is being saved
 		Toast.makeText(this, "saving travel claim", Toast.LENGTH_SHORT).show();
-		
+		tc.change_status("Submitted");
 		// Get input from screen
 		EditText des = (EditText) findViewById(R.id.descriptionEdit);
 		EditText start = (EditText) findViewById(R.id.startDateEdit);
