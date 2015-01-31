@@ -46,7 +46,7 @@ public class TravelClaimActivity extends Activity {
 			
 			// if status is submitted,do not allow editing
 			if (tc.get_status()=="Submitted") {
-				Toast.makeText(this, "this travel claim is submitted, no change is saved", Toast.LENGTH_SHORT).show();
+				Toast.makeText(this, "this travel claim is submitted, no change will be saved", Toast.LENGTH_SHORT).show();
 				Button button = (Button) findViewById(R.id.saveTravelClaimButton);
 				button.setText("return without saving");
 			}
