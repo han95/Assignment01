@@ -46,7 +46,7 @@ public class TClaim implements Serializable {
 
 	// return information shown  list
 	public String shown_information(){
-		return this.des+"--status:"+this.status;
+		return this.des+"--state:"+this.status;
 	}
 	
 	// get information: description of travel claim
