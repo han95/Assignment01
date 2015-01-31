@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 public class EmailTClaimActivity extends Activity {
@@ -22,7 +23,22 @@ public class EmailTClaimActivity extends Activity {
 	}
 
 	public void sendEmail(View v) {
-		Toast.makeText(this, "this travel claim is sent", Toast.LENGTH_LONG).show();
-		finish();
+		boolean form = false;
+		int i = 0;
+		String addr = ((EditText) findViewById(R.id.emailAddressEdit)).getText().toString();
+		i = 0;
+		while (i < addr.length()) {
+			if (addr.charAt(i) == '@') {
+				form = true;
+			}
+			i++;
+		}
+		if (!form) {
+			Toast.makeText(this, "please enter right email address!", Toast.LENGTH_LONG).show();
+			
+		} else {
+			Toast.makeText(this, "this travel claim is sent", Toast.LENGTH_LONG).show();
+			finish();
+		}
 	}
 }
