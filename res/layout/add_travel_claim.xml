@@ -32,6 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/startDateText"
         android:layout_alignBottom="@+id/startDateText"
+        android:layout_alignLeft="@+id/endDateEdit"
         android:layout_alignParentRight="true"
         android:ems="10"
         android:inputType="date" />
@@ -40,7 +41,6 @@
         android:id="@+id/endDateEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/endDateText"
         android:layout_alignBottom="@+id/endDateText"
         android:layout_toRightOf="@+id/startDateText"
         android:ems="10"
@@ -67,13 +67,41 @@
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
+        android:id="@+id/travelDescriptionText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text=" Travel description:"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
         android:id="@+id/expenseItemText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/endDateEdit"
-        android:layout_marginTop="17dp"
+        android:layout_below="@+id/TotalSpendText"
+        android:layout_marginTop="20dp"
         android:text=" Expense item: "
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/TotalSpendText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/endDateEdit"
+        android:layout_marginTop="15dp"
+        android:text=" Total currency:  "
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/TotalSpendEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/expenseItemText"
+        android:layout_toRightOf="@+id/travelDescriptionText"
+        android:text="0"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <ListView
@@ -85,14 +113,5 @@
         android:layout_below="@+id/expenseItemText" >
 
     </ListView>
-
-    <TextView
-        android:id="@+id/travelDescriptionText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:text=" Travel description:"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </RelativeLayout>

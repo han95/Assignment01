@@ -9,11 +9,11 @@ import java.util.ArrayList;
  * It also contains a list of listeners
  */
 public class TClaimList implements Serializable {
-
+	
 	/**
-	 * 
+	 *  serialization ID
 	 */
-	private static final long serialVersionUID = 1266127983788933379L;
+	private static final long serialVersionUID = 5149747580509242561L;
 	// protected variables
 	protected ArrayList<TClaim> tcList = null;
 	protected transient ArrayList<Listener> listeners;
@@ -36,8 +36,13 @@ public class TClaimList implements Serializable {
 		return tcList;
 	}
 	
+	// get the current node we access to
+	public TClaim getCurrentTClaim() {
+		return ClaimIndex.get_tc();
+	}
+	
 	// add new travel claim and let listeners know
-	public void addTClaim(){//TClaim newTC){
+	public void addTClaim(){
 		tcList.add(new TClaim());
 		notifyListeners();
 	}

@@ -21,8 +21,10 @@ public class TClaimListManager {
 	static final String tclkey = "travelClaimList";
 	Context context;
 	
+	// static private variable, pointing to null at beginning
 	static private TClaimListManager tcListManager = null;
 	
+	// initialize manager
 	public static void initManager(Context context) {
 		if (tcListManager==null){
 			if (context==null) {
@@ -32,7 +34,9 @@ public class TClaimListManager {
 		}
 	}
 	
+	// get manager
 	public static TClaimListManager getManager(){
+		// deal with null pointer
 		if (tcListManager==null) {
 			throw new RuntimeException("Did not initialize manager");
 		}
@@ -43,6 +47,7 @@ public class TClaimListManager {
 		this.context = context;
 	}
 	
+	// get travel claim list
 	public TClaimList loadTClaimList() throws StreamCorruptedException, IOException, ClassNotFoundException{
 		SharedPreferences settings = context.getSharedPreferences(prefFile, Context.MODE_PRIVATE);
 		String tcListData = settings.getString(tclkey, "");
@@ -54,11 +59,14 @@ public class TClaimListManager {
 
 	}
 
+	// save information in file
 	static public TClaimList TClaimFromString(String tcListData) throws StreamCorruptedException, IOException, ClassNotFoundException {
 		ByteArrayInputStream bi = new ByteArrayInputStream(Base64.decode(tcListData, Base64.DEFAULT));
 		ObjectInputStream oi = new ObjectInputStream(bi);
 		return (TClaimList)oi.readObject();
 	}
+	
+	// get information from file
 	static public String TClaimListToString(TClaimList tcl) throws IOException{
 		ByteArrayOutputStream bo = new ByteArrayOutputStream();
 		ObjectOutputStream oo = new ObjectOutputStream(bo);
@@ -68,6 +76,7 @@ public class TClaimListManager {
 		return Base64.encodeToString(bytes, Base64.DEFAULT);
 	}
 
+	// save file
 	public void saveTClaimList(TClaimList tcl) throws IOException{
 		SharedPreferences settings = context.getSharedPreferences(prefFile, Context.MODE_PRIVATE);
 		Editor editor = settings.edit();

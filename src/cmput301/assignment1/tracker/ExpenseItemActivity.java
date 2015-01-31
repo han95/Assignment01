@@ -18,6 +18,7 @@ public class ExpenseItemActivity extends Activity {
 	// get controller
 	TClaimListController tcC = new TClaimListController();
 	
+	// create activity
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -47,10 +48,9 @@ public class ExpenseItemActivity extends Activity {
 		// build new expense item and save it into list
 		tcC.saveEItem(new EItem(des.getText().toString(), date.getText().toString(), cat.getText().toString(), price.getText().toString(), unit.getText().toString()));
 		
-		// transfer to another activity
+		//transfer to another activity
 		Intent intent = new Intent(ExpenseItemActivity.this, TravelClaimActivity.class);
 		startActivity(intent);
-		//finish();
 	}
 
 }

@@ -7,6 +7,7 @@
         android:title="@string/action_settings"/>
     <item android:id="@+id/addEItemMenu" android:title="add expense item" android:onClick="addExpenseItem"></item>
     <item android:id="@+id/returnedMenu" android:title="denote as returned" android:onClick="returnTClaim"></item>
-    <item android:id="@+id/emailMenu" android:onClick="emailTClaim" android:title="Email this claim"></item>
+    <item android:id="@+id/approvedMenu" android:title="denote as approved" android:onClick="approveTClaim"></item><item android:id="@+id/emailMenu" android:onClick="emailTClaim" android:title="Email this claim"></item>
+    
 
 </menu>

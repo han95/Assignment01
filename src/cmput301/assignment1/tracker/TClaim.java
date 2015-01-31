@@ -9,9 +9,8 @@ import java.util.ArrayList;
  * user can also get expense items throw this class
  */
 public class TClaim implements Serializable {
-
 	/**
-	 * 
+	 * serialization ID
 	 */
 	private static final long serialVersionUID = -2962474581497384087L;
 	// private variables

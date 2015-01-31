@@ -28,7 +28,7 @@ public class MainActivity extends Activity {
 	TClaimListController tcC = new TClaimListController();
 	
 	// initialize global value
-	ClaimIndex tcPosition = new ClaimIndex();
+	//ClaimIndex tcPosition = new ClaimIndex();
 	
 	// on create
 	@Override
@@ -93,13 +93,15 @@ public class MainActivity extends Activity {
 			}
 		});
 
+		// when user click saved claim: 
 		listView.setOnItemClickListener(new OnItemClickListener(){
 
 			@Override
 			public void onItemClick(AdapterView<?> adapterV, View v, int index,
 					long id) {
+
 				// update global value
-				tcPosition.set_tc(TClaimListController.getTClaimList().getTClaims().get(index));
+				ClaimIndex.set_tc(TClaimListController.getTClaimList().getTClaims().get(index));
 				Intent intent = new Intent(MainActivity.this,TravelClaimActivity.class);
 				startActivity(intent);
 				
@@ -123,7 +125,7 @@ public class MainActivity extends Activity {
 		// build new claim object
 		tcC.saveTClaim();
 		//update global variable
-		tcPosition.set_tc(TClaimListController.getTClaimList().getLastTClaim());
+		ClaimIndex.set_tc(TClaimListController.getTClaimList().getLastTClaim());
 		// transfer to another activity
 		Intent intent = new Intent(MainActivity.this, TravelClaimActivity.class);
 		startActivity(intent);

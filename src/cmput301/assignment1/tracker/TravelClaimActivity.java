@@ -22,9 +22,10 @@ import android.widget.Toast;
 public class TravelClaimActivity extends Activity {
 	// access to travel claim controller
 	TClaimListController tcC = new TClaimListController();
+	protected transient ArrayList<Listener> listeners;
 	
-	ClaimIndex tcPosition = new ClaimIndex();
-	TClaim tc = tcPosition.get_tc();
+	// get the current node we access to 
+	TClaim tc = ClaimIndex.get_tc();
 	
 	// on create
 	@Override
@@ -49,6 +50,10 @@ public class TravelClaimActivity extends Activity {
 				Toast.makeText(this, "this travel claim is submitted, no change will be saved", Toast.LENGTH_LONG).show();
 				Button button = (Button) findViewById(R.id.saveTravelClaimButton);
 				button.setText("return without saving");
+			} else if (tc.get_status()=="Approved") {
+				Toast.makeText(this, "this travel claim is approved, no change will be saved", Toast.LENGTH_LONG).show();
+				Button button = (Button) findViewById(R.id.saveTravelClaimButton);
+				button.setText("return to main page");
 			}
 		}
 		
@@ -59,10 +64,11 @@ public class TravelClaimActivity extends Activity {
 		ListView listView = (ListView) findViewById(R.id.expenseItemList);
 
 		// get the expense item list and show it on screen
-		Collection<EItem> eis = TClaimListController.getTClaimList().getLastTClaim().get_eiList();
+		Collection<EItem> eis = TClaimListController.getTClaimList().getCurrentTClaim().get_eiList();
 		final ArrayList<EItem> list = new ArrayList<EItem>(eis);
 		final ArrayAdapter<EItem> eiAdapter = new ArrayAdapter<EItem>(this, android.R.layout.simple_list_item_1, list);
 		listView.setAdapter(eiAdapter);
+		
 	}
 
 	@Override
@@ -77,6 +83,10 @@ public class TravelClaimActivity extends Activity {
 		// check state, if the claim is submitted, editions are not allowed
 		if (tc.get_status()=="Submitted") {
 			Toast.makeText(this, "returning...", Toast.LENGTH_SHORT).show();
+			Intent intent = new Intent(TravelClaimActivity.this, MainActivity.class);
+			startActivity(intent);
+		} else if (tc.get_status()=="Approved") {
+			Toast.makeText(this, "Return to travel claim list", Toast.LENGTH_SHORT).show();
 			Intent intent = new Intent(TravelClaimActivity.this, MainActivity.class);
 			startActivity(intent);
 		} else {
@@ -102,10 +112,17 @@ public class TravelClaimActivity extends Activity {
 	
 	// This method is called when "add expense item" menu is clicked
 	public void addExpenseItem(MenuItem menu) {
-		// check status, if status is "Submitted", refuse editing
+		// check state, if state is "Submitted", refuse editing
 		if (tc.get_status()=="Submitted") {
 			Toast.makeText(this, "this travel claim is submitted, \n" +
 					"adding expense item is not allowed", Toast.LENGTH_LONG).show();
+		
+		// if state is "Approved", refuse editing
+		} else if (tc.get_status()=="Approved") {
+			Toast.makeText(this, "this travel claim is approved, \n" +
+					"adding expense item is not allowed", Toast.LENGTH_LONG).show();
+		
+		// if state is "In progress" or "returned", allow adding
 		} else {
 			// Show sentence on screen to ask user to edit expense item
 			Toast.makeText(this, "add expense item", Toast.LENGTH_SHORT).show();
@@ -117,22 +134,47 @@ public class TravelClaimActivity extends Activity {
 	
 	// This method is called when "denote as returned" menu is clicked
 	public void returnTClaim(MenuItem menu) {
+		// check the claim's state
 		String state = tc.get_status();
-		if (state!="Submitted") {
+		// if the claim is in progress, the menu does nothing
+		if (state=="In progress") {
 			Toast.makeText(this, "this claim is still in progress", Toast.LENGTH_LONG).show();
+		// if the claim is submitted, change status to returned, and allow editing
+		} else if (state=="Approved"){
+			Toast.makeText(this, "Sorry, this claim is approved. \n" +
+					"It cannot be returned", Toast.LENGTH_LONG).show();
 		} else {
 			Toast.makeText(this, "this claim is returned, \n" +
 					"editing is allowed now", Toast.LENGTH_LONG).show();
 			tc.change_status("Returned");
+			Toast.makeText(this, "return the claim", Toast.LENGTH_SHORT).show();
 			Button button = (Button) findViewById(R.id.saveTravelClaimButton);
 			button.setText("save travel claim");
+		}
+	}
+	
+	public void approveTClaim(MenuItem menu) {
+		// check the claim's state
+		String state = tc.get_status();
+		// if the claim is in progress, the menu does nothing
+		if (state=="In progress") {
+			Toast.makeText(this, "this claim is still in progress", Toast.LENGTH_LONG).show();
+		// if the claim is submitted, change status to approved, editing will never be allowed.
+		} else {
+			tc.change_status("Approved");
+			Toast.makeText(this, "this claim is approved, \n" +
+					"you cannot change it any more!", Toast.LENGTH_LONG).show();
+			tc.change_status("Approved");
+			Toast.makeText(this, "return the claim", Toast.LENGTH_SHORT).show();
+			Button button = (Button) findViewById(R.id.saveTravelClaimButton);
+			button.setText("return to main page");
 		}
 	}
 	
 	// This method is called when "email this claim" menu is clicked
 	public void emailTClaim(MenuItem menu) {
 		Toast.makeText(this, "prepare email page", Toast.LENGTH_SHORT).show();
-		
+		// transfer to email page
 		Intent intent = new Intent(TravelClaimActivity.this, EmailTClaimActivity.class);
 		startActivity(intent);
 	}
