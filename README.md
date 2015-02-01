@@ -1,6 +1,8 @@
 # Tracker
 Android App to record expense items in travel.
 
+(A UML diagram is in doc folder, and a two minutes video is in video folder.)
+
 User will see a list of travel claim when the application starts, showing the description(name) of the claim as well as its state.
 
 Clicking the menu called "add new claim" will leads user to another page, which allows user to edit a new claim. When user saves claim, the state will automaically changes to "Submitted". Then the application will jumps back to main page.
