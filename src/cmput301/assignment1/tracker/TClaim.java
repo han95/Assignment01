@@ -1,19 +1,21 @@
 package cmput301.assignment1.tracker;
 
+/*
+ * Travel claim class.
+ * It allows user to edit key information of claim through public methods, 
+ * user can also get expense items of this claim
+ */
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
-/*
- * Travel claim class.
- * It allows user to get and add travel claim, 
- * user can also get expense items throw this class
- */
 public class TClaim implements Serializable {
 
 	/**
-	 * 
+	 * generated serialization ID
 	 */
 	private static final long serialVersionUID = -6294145498306239207L;
+	
 	// private variables
 	protected String des = "";
 	protected String start_date = "";
@@ -89,38 +91,58 @@ public class TClaim implements Serializable {
 	
 	// get total expense from expense item list
 	public String total_expense() {
+		
+		// index of eiList
 		int index = 0;
+		// index of new list
 		int i = 0;
+		// variable to save unit of currency
 		String u = "";
+		// variable to save price
 		String p = ""; 
+		// temporary variable, saving double data which is converted from string
 		double temp = 0;
+		// list to save total prices
 		ArrayList<String> total = new ArrayList<String>();
+		// list to save units
 		ArrayList<String> unit = new ArrayList<String>();
+		// result of compare. If the unit is exist in unit list, it is true
 		boolean unitExist = false;
+		// check each expense item in eiList
 		while (index < eiList.size()) {
+			// get currency unit of this expense item
 			u = eiList.get(index).get_unit();
+			// initialize index of unit list
 			i = 0;
+			// check if this unit has been in unit list
+			// if it is found, stop while loop
 			while (i < unit.size() & unitExist == false) {
 				if (u.equals(unit.get(i).toString())) {
 					unitExist = true;
 				}
 				i++;
 			}
+			// get price of this expense item
 			p = eiList.get(index).get_price();
+			// if unit has been in unit list, calculate the sum of price represented by this unit
 			if (unitExist == true) {
 				i--;
 				temp = Double.parseDouble(total.get(i));
 				temp += Double.parseDouble(p);
 				total.set(i, String.valueOf(temp));
+			// if it is a new unit, append it in to list
 			} else {
 				unit.add(u);
 				total.add(p);
 			}
+			// update variables and check next item
 			unitExist = false;
 			index++;
 		}
+		// initialize string which will be returned
 		this.RString = "";
 		index = 0;
+		// add all information in unit list and price list into string
 		while (index < total.size()) {
 			this.RString = this.RString + total.get(index) + "-" + unit.get(index)+"; \n";
 			index++;

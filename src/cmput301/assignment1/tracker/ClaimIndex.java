@@ -3,7 +3,9 @@ package cmput301.assignment1.tracker;
 /*
  * This class acts as global variable
  * It records the node (travel claim) that we get access to.
+ * And allow other classes get access to information through public methods
  */
+
 public class ClaimIndex {
 
 	private static TClaim tc;

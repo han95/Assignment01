@@ -1,19 +1,21 @@
 package cmput301.assignment1.tracker;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-
 /*
  * This class allows user to save a list of travel claims,
  * and get access to one object throw this class.
  * It also contains a list of listeners
  */
+
+import java.io.Serializable;
+import java.util.ArrayList;
+
 public class TClaimList implements Serializable {
 
 	/**
-	 * 
+	 * generated serialization ID
 	 */
 	private static final long serialVersionUID = 5149747580509242561L;
+	
 	// protected variables
 	protected ArrayList<TClaim> tcList = null;
 	protected transient ArrayList<Listener> listeners;

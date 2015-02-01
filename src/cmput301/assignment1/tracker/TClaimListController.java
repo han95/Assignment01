@@ -1,10 +1,11 @@
 package cmput301.assignment1.tracker;
 
+/*
+ * This is controller of this application
+ */
+
 import java.io.IOException;
 
-/*
- * This is a controller of this application
- */
 public class TClaimListController {
 	
 	private static TClaimList tcList = null;

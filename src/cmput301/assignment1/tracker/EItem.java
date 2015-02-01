@@ -1,13 +1,19 @@
 package cmput301.assignment1.tracker;
 
+/*
+ * This is class of expense item, saving key information of item
+ * and allow other classes get access to private information through public methods
+ */
+
 import java.io.Serializable;
 
 public class EItem implements Serializable{
-
+	
 	/**
-	 * 
+	 * generated serialization ID
 	 */
 	private static final long serialVersionUID = -1375065243049871688L;
+	
 	// private variables
 	private String description = "";
 	private String date = "";

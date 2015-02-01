@@ -1,5 +1,12 @@
 package cmput301.assignment1.tracker;
 
+/*
+ * This activity is created when user click a saved claim on main page
+ * It shows all information of the claim which user clicked
+ * If claim is submitted, it allows user to return it and make further edits
+ * If it is approved, user cannot return the claim
+ */
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -17,11 +24,16 @@ import android.widget.Toast;
 
 public class ViewTravelClaimActivity extends Activity {
 
+	// get the current position in travel claim list
 	TClaim tc = ClaimIndex.get_tc();
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.view_travel_claim);
+		
+		// check if there is any information in this claim
+		// If there is, show it on screen
 		if (tc.has_content()) {
 			
 			// show all information on screen
@@ -36,9 +48,11 @@ public class ViewTravelClaimActivity extends Activity {
 			spend.setText(tc.total_expense());
 		}
 		
+		// check the status, if the claim is already approved, give user a warning
 		if (tc.get_status()=="Approved") {
 			Toast.makeText(this, "this claim is approved, \n" +
 					"no change will be allowed", Toast.LENGTH_LONG).show();
+			// reset return button
 			Button button = (Button) findViewById(R.id.ReturnClaimButton);
 			button.setText("unable to return");
 		}
@@ -63,7 +77,10 @@ public class ViewTravelClaimActivity extends Activity {
 		return true;
 	}
 	
-	// This method is called when "Return" button is clicked
+	/*
+	 * This method is called when "Return" button is clicked
+	 * It returns to main page
+	 */
 	public void returnTClaim(View v) {
 		if (tc.get_status()=="Approved") {
 			Toast.makeText(this, "this claim cannot be reurned", Toast.LENGTH_LONG).show();
@@ -76,6 +93,10 @@ public class ViewTravelClaimActivity extends Activity {
 		}
 	}
 
+	/* 
+	 * This method is called when the button "Approve" is clicked
+	 * It changes the claim's status to approved and refuse any change
+	 */
 	public void approveTClaim(View v) {
 		Toast.makeText(this, "this claim is approved, \n" +
 				"no change will be allowed", Toast.LENGTH_LONG).show();
@@ -84,13 +105,21 @@ public class ViewTravelClaimActivity extends Activity {
 		button.setText("unable to return");
 	}
 	
+	/*
+	 * This method is called when the button "Back to list" is clicked
+	 * It return to main page of the application
+	 */
 	public void backToList(View v) {
 		Toast.makeText(this, "back to main page", Toast.LENGTH_LONG).show();
 		Intent intent = new Intent(ViewTravelClaimActivity.this, MainActivity.class);
 		startActivity(intent);
 	}
 	
-	// This method is called when "email this claim" menu is clicked
+	/*
+	 * This method is called when "email this claim" menu is clicked
+	 * It starts a new activity called EmailTClaimActivity
+	 * and open a new page
+	 */
 	public void emailTClaim(MenuItem menu) {
 		Toast.makeText(this, "prepare email page", Toast.LENGTH_SHORT).show();
 		// transfer to email page

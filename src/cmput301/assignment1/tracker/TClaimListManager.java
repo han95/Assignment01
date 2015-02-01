@@ -1,5 +1,11 @@
 package cmput301.assignment1.tracker;
 
+/*
+ * This is manager of this application
+ * It save data in file,
+ * to make sure data are saved when application stops
+ */
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -11,11 +17,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.util.Base64;
-/*
- * This is manager of this application
- * It save data in file,
- * to make sure data are saved when application stops
- */
+
 public class TClaimListManager {
 	static final String prefFile = "TravelClaimList";
 	static final String tclkey = "travelClaimList";

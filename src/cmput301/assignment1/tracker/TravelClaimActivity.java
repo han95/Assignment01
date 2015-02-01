@@ -1,5 +1,11 @@
 package cmput301.assignment1.tracker;
 
+/*
+ * This activity is executed when "add travel claim" menu is clicked in main activity layout
+ * It allows user to edit new travel claim object, and shows saved expense items
+ * It also allows user to edit new expense item, when user click "add expense item" menu.
+ */
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -14,17 +20,14 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-/*
- * This activity is executed when "add travel claim" menu is clicked in main activity layout
- * It allows user to edit new travel claim object, and shows saved expense items
- * It also allows user to edit new expense item, when user click "add expense item" menu.
- */
+
 public class TravelClaimActivity extends Activity {
+	
 	// access to travel claim controller
 	TClaimListController tcC = new TClaimListController();
 	protected transient ArrayList<Listener> listeners;
 	
-	// get the current node we access to 
+	// get the current position in travel claim list 
 	TClaim tc = ClaimIndex.get_tc();
 	
 	// on create
@@ -33,7 +36,7 @@ public class TravelClaimActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.add_travel_claim);
 		
-		// if tc is not empty:
+		// if tc is not empty, show all information on screen
 		if (tc.has_content()) {
 			
 			// show all information on screen
@@ -69,7 +72,11 @@ public class TravelClaimActivity extends Activity {
 		return true;
 	}
 	
-	// This function is called when "save travel claim" button is clicked
+	/*
+	 * This function is called when "save travel claim" button is clicked
+	 * It saves all information that user input, 
+	 * and jump back to main page
+	 */
 	public void saveTC(View v){
 		// check state, if the claim is submitted, editions are not allowed
 		if (tc.get_status()=="Submitted") {
@@ -101,29 +108,22 @@ public class TravelClaimActivity extends Activity {
 	
 	}
 	
-	// This method is called when "add expense item" menu is clicked
+	/*
+	 * This method is called when "add expense item" menu is clicked
+	 * It starts a new activity called ExpenseItemActivity
+	 */
 	public void addExpenseItem(MenuItem menu) {
-		// check state, if state is "Submitted", refuse editing
-		if (tc.get_status()=="Submitted") {
-			Toast.makeText(this, "this travel claim is submitted, \n" +
-					"adding expense item is not allowed", Toast.LENGTH_LONG).show();
-		
-		// if state is "Approved", refuse editing
-		} else if (tc.get_status()=="Approved") {
-			Toast.makeText(this, "this travel claim is approved, \n" +
-					"adding expense item is not allowed", Toast.LENGTH_LONG).show();
-		
-		// if state is "In progress" or "returned", allow adding
-		} else {
-			// Show sentence on screen to ask user to edit expense item
-			Toast.makeText(this, "add expense item", Toast.LENGTH_SHORT).show();
-			// Transfer to another activity, where user can edit expense item
-			Intent intent = new Intent(TravelClaimActivity.this, ExpenseItemActivity.class);
-			startActivity(intent);
-		}
+		// Show sentence on screen to tell user the page they are going to
+		Toast.makeText(this, "add expense item", Toast.LENGTH_SHORT).show();
+		// Transfer to another activity, where user can edit expense item
+		Intent intent = new Intent(TravelClaimActivity.this, ExpenseItemActivity.class);
+		startActivity(intent);
 	}
 	
-	// This method is called when "email this claim" menu is clicked
+	/*
+	 * This method is called when "email this claim" menu is clicked
+	 * It starts a new activity called EmailTClaimActivity
+	 */
 	public void emailTClaim(MenuItem menu) {
 		Toast.makeText(this, "prepare email page", Toast.LENGTH_SHORT).show();
 		// transfer to email page
