@@ -5,7 +5,6 @@
         android:orderInCategory="100"
         android:showAsAction="never"
         android:title="@string/action_settings"/>
-    <item android:id="@+id/addEItemMenu" android:title="add expense item" android:onClick="addExpenseItem"></item><item android:id="@+id/emailMenu" android:onClick="emailTClaim" android:title="Email this claim"></item>
-    
+    <item android:id="@+id/emailTCMenu" android:onClick="emailTClaim" android:title="email this claim"></item>
 
 </menu>

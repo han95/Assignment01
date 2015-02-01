@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/viewTcDesText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="Description: "
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/viewTcDesSpace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/viewStartSpace"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/viewTcDesText"
+        android:text="description"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/viewDateRangeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/viewTcDesSpace"
+        android:text="Date range: "
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/SymbolText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/viewEndSpace"
+        android:layout_alignBottom="@+id/viewEndSpace"
+        android:layout_centerHorizontal="true"
+        android:text="------" />
+
+    <TextView
+        android:id="@+id/viewStartSpace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/viewTcDesText"
+        android:layout_below="@+id/viewDateRangeText"
+        android:text="start from"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/viewEndSpace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/viewDateRangeText"
+        android:layout_marginLeft="43dp"
+        android:layout_toRightOf="@+id/SymbolText"
+        android:text="to"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/viewTotalCurrencyText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/viewStartSpace"
+        android:text="Total currency: "
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/viewTotalCurrencySpace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/viewStartSpace"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/viewTotalCurrencyText"
+        android:text="total"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/EIListText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/viewTotalCurrencySpace"
+        android:text="Expense items: "
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <ListView
+        android:id="@+id/viewEIList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/SubmitClaimButton"
+        android:layout_alignLeft="@+id/viewTotalCurrencySpace"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/EIListText" >
+
+    </ListView>
+
+    <Button
+        android:id="@+id/BackButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:onClick="backToList"
+        android:text="Back to travel claims list" />
+
+    <Button
+        android:id="@+id/SubmitClaimButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/BackButton"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/ReturnClaimButton"
+        android:onClick="approveTClaim"
+        android:text="Approve" />
+
+    <Button
+        android:id="@+id/ReturnClaimButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/BackButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/EIListText"
+        android:onClick="returnTClaim"
+        android:text="Returned" />
+
+</RelativeLayout>

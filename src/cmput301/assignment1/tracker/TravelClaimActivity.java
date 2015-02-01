@@ -10,9 +10,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 /*
  * This activity is executed when "add travel claim" menu is clicked in main activity layout
@@ -40,28 +40,19 @@ public class TravelClaimActivity extends Activity {
 			EditText des = (EditText) findViewById(R.id.descriptionEdit);
 			EditText start = (EditText) findViewById(R.id.startDateEdit);
 			EditText end = (EditText) findViewById(R.id.endDateEdit);
+			TextView spend = (TextView) findViewById(R.id.TotalExpenseSpace);
 			
 			des.setText(tc.get_description());
 			start.setText(tc.get_start_date());
 			end.setText(tc.get_end_date());
-			
-			// if status is submitted,do not allow editing
-			if (tc.get_status()=="Submitted") {
-				Toast.makeText(this, "this travel claim is submitted, no change will be saved", Toast.LENGTH_LONG).show();
-				Button button = (Button) findViewById(R.id.saveTravelClaimButton);
-				button.setText("return without saving");
-			} else if (tc.get_status()=="Approved") {
-				Toast.makeText(this, "this travel claim is approved, no change will be saved", Toast.LENGTH_LONG).show();
-				Button button = (Button) findViewById(R.id.saveTravelClaimButton);
-				button.setText("return to main page");
-			}
+			spend.setText(tc.total_expense());
 		}
 		
 		// initialize manager
 		TClaimListManager.initManager(this.getApplicationContext());
 		
 		// get access to expense item list view
-		ListView listView = (ListView) findViewById(R.id.expenseItemList);
+		ListView listView = (ListView) findViewById(R.id.EItemList);
 
 		// get the expense item list and show it on screen
 		Collection<EItem> eis = TClaimListController.getTClaimList().getCurrentTClaim().get_eiList();
@@ -129,45 +120,6 @@ public class TravelClaimActivity extends Activity {
 			// Transfer to another activity, where user can edit expense item
 			Intent intent = new Intent(TravelClaimActivity.this, ExpenseItemActivity.class);
 			startActivity(intent);
-		}
-	}
-	
-	// This method is called when "denote as returned" menu is clicked
-	public void returnTClaim(MenuItem menu) {
-		// check the claim's state
-		String state = tc.get_status();
-		// if the claim is in progress, the menu does nothing
-		if (state=="In progress") {
-			Toast.makeText(this, "this claim is still in progress", Toast.LENGTH_LONG).show();
-		// if the claim is submitted, change status to returned, and allow editing
-		} else if (state=="Approved"){
-			Toast.makeText(this, "Sorry, this claim is approved. \n" +
-					"It cannot be returned", Toast.LENGTH_LONG).show();
-		} else {
-			Toast.makeText(this, "this claim is returned, \n" +
-					"editing is allowed now", Toast.LENGTH_LONG).show();
-			tc.change_status("Returned");
-			Toast.makeText(this, "return the claim", Toast.LENGTH_SHORT).show();
-			Button button = (Button) findViewById(R.id.saveTravelClaimButton);
-			button.setText("save travel claim");
-		}
-	}
-	
-	public void approveTClaim(MenuItem menu) {
-		// check the claim's state
-		String state = tc.get_status();
-		// if the claim is in progress, the menu does nothing
-		if (state=="In progress") {
-			Toast.makeText(this, "this claim is still in progress", Toast.LENGTH_LONG).show();
-		// if the claim is submitted, change status to approved, editing will never be allowed.
-		} else {
-			tc.change_status("Approved");
-			Toast.makeText(this, "this claim is approved, \n" +
-					"you cannot change it any more!", Toast.LENGTH_LONG).show();
-			tc.change_status("Approved");
-			Toast.makeText(this, "return the claim", Toast.LENGTH_SHORT).show();
-			Button button = (Button) findViewById(R.id.saveTravelClaimButton);
-			button.setText("return to main page");
 		}
 	}
 	

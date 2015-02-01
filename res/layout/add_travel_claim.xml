@@ -96,19 +96,20 @@
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
-        android:id="@+id/TotalSpendEdit"
+        android:id="@+id/TotalExpenseSpace"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/expenseItemText"
+        android:layout_alignBaseline="@+id/TotalSpendText"
+        android:layout_alignBottom="@+id/TotalSpendText"
+        android:layout_alignParentRight="true"
         android:layout_toRightOf="@+id/travelDescriptionText"
         android:text="0"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <ListView
-        android:id="@+id/expenseItemList"
+        android:id="@+id/EItemList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/saveTravelClaimButton"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/expenseItemText" >
 

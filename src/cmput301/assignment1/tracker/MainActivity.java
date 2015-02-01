@@ -102,7 +102,7 @@ public class MainActivity extends Activity {
 
 				// update global value
 				ClaimIndex.set_tc(TClaimListController.getTClaimList().getTClaims().get(index));
-				Intent intent = new Intent(MainActivity.this,TravelClaimActivity.class);
+				Intent intent = new Intent(MainActivity.this,ViewTravelClaimActivity.class);
 				startActivity(intent);
 				
 			}

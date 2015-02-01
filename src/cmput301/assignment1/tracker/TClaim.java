@@ -9,16 +9,18 @@ import java.util.ArrayList;
  * user can also get expense items throw this class
  */
 public class TClaim implements Serializable {
+
 	/**
-	 * serialization ID
+	 * 
 	 */
-	private static final long serialVersionUID = -2962474581497384087L;
+	private static final long serialVersionUID = -6294145498306239207L;
 	// private variables
 	protected String des = "";
 	protected String start_date = "";
 	protected String end_date = "";
 	protected ArrayList<EItem> eiList = new ArrayList<EItem>();
 	protected String status = "In progress";
+	protected String RString = "";
 	
 	// constructor
 	public TClaim(){
@@ -75,9 +77,53 @@ public class TClaim implements Serializable {
 
 	// see if the claim is empty
 	public boolean has_content() {
-		if (this.des != null | this.eiList != null | this.start_date != null | this.end_date != null) {
+		if (this.des != "" |
+				this.start_date != "" | 
+				this.end_date != "" |
+				this.RString != "" |
+				this.eiList.size() != 0) {
 			return true;
 		}
 		return false;
+	}
+	
+	// get total expense from expense item list
+	public String total_expense() {
+		int index = 0;
+		int i = 0;
+		String u = "";
+		String p = ""; 
+		double temp = 0;
+		ArrayList<String> total = new ArrayList<String>();
+		ArrayList<String> unit = new ArrayList<String>();
+		boolean unitExist = false;
+		while (index < eiList.size()) {
+			u = eiList.get(index).get_unit();
+			i = 0;
+			while (i < unit.size() & unitExist == false) {
+				if (u == unit.get(i)) {
+					unitExist = true;
+				}
+				i++;
+			}
+			p = eiList.get(index).get_price();
+			if (unitExist == true) {
+				i--;
+				temp = Double.parseDouble(total.get(i));
+				temp += Double.parseDouble(p);
+				total.set(i, String.valueOf(temp));
+			} else {
+				unit.add(u);
+				total.add(p);
+			}
+			index++;
+		}
+		this.RString = "";
+		index = 0;
+		while (index < total.size()) {
+			this.RString = this.RString + total.get(index) + "-" + unit.get(index)+"; \n";
+			index++;
+		}
+		return this.RString;
 	}
 }

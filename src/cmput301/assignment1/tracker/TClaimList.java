@@ -9,9 +9,9 @@ import java.util.ArrayList;
  * It also contains a list of listeners
  */
 public class TClaimList implements Serializable {
-	
+
 	/**
-	 *  serialization ID
+	 * 
 	 */
 	private static final long serialVersionUID = 5149747580509242561L;
 	// protected variables

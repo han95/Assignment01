@@ -29,19 +29,22 @@ public class EmailTClaimActivity extends Activity {
 	// This method is called when the user click "email this item" menu
 	public void sendEmail(View v) {
 		// check whether the format of email address is legal
-		boolean form = false;
 		int i = 0;
+		int countAt = 0;
+		int countDot = 0;
 		String addr = ((EditText) findViewById(R.id.emailAddressEdit)).getText().toString();
-		i = 0;
 		while (i < addr.length()) {
 			// if the email address contains @ character, the application considers it as legal.
 			if (addr.charAt(i) == '@') {
-				form = true;
+				countAt++;
+			}
+			if (addr.charAt(i) == '.') {
+				countDot++;
 			}
 			i++;
 		}
 		// if the format is wrong, ask the user to input again
-		if (!form) {
+		if (countAt!=1 | countDot!=1) {
 			Toast.makeText(this, "please enter right email address!", Toast.LENGTH_LONG).show();
 			
 		// if it is right, go back to last activity

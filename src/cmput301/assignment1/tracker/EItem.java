@@ -3,8 +3,9 @@ package cmput301.assignment1.tracker;
 import java.io.Serializable;
 
 public class EItem implements Serializable{
+
 	/**
-	 *  serialization ID
+	 * 
 	 */
 	private static final long serialVersionUID = -1375065243049871688L;
 	// private variables
