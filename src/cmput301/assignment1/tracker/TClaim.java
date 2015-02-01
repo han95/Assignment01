@@ -101,7 +101,7 @@ public class TClaim implements Serializable {
 			u = eiList.get(index).get_unit();
 			i = 0;
 			while (i < unit.size() & unitExist == false) {
-				if (u == unit.get(i)) {
+				if (u.equals(unit.get(i).toString())) {
 					unitExist = true;
 				}
 				i++;
@@ -116,6 +116,7 @@ public class TClaim implements Serializable {
 				unit.add(u);
 				total.add(p);
 			}
+			unitExist = false;
 			index++;
 		}
 		this.RString = "";
